@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+
+require 'bai_parser'
+require 'pp'
+
+pp BaiParser::Parser.parse ARGV[0]
