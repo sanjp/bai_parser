@@ -24,6 +24,9 @@ data = BAI::Parser.parse "BAI-File-From-Bank.bai"
 
 # Then you can use a custom writer to output the data as needed such as to a csv file
 MyCustomBAIWriter.write data
+
+# For a quick test to see the parsed data, run the executable against your data file and it will print the data to the screen
+bai_parse bai-file.txt
 ```
 
 ## Contributing
