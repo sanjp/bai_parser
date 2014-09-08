@@ -1,4 +1,4 @@
-# Bai Parser
+# BAI Parser
 
 Ruby BAI2 Bank File parser.  Takes a bank file as input and outputs the data as a Ruby hash.  You can then use a custom writer class to output the data as needed for your purposes.
 
