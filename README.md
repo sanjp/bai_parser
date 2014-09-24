@@ -20,7 +20,7 @@ Or install it yourself as:
 
 ``` ruby
 require "bai_parser"
-data = BAI::Parser.parse "BAI-File-From-Bank.bai"
+data = BaiParser::Parser.parse "BAI-File-From-Bank.bai"
 
 # Then you can use a custom writer to output the data as needed such as to a csv file
 MyCustomBAIWriter.write data

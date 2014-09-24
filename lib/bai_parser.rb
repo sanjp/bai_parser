@@ -31,6 +31,33 @@ module BaiParser
       p.parse filename
     end
     
+    def parse(filename)
+      f = File.open(filename)
+      record = next_line = f.gets.chomp
+      count = 1
+      loop do
+        loop do # gather continuation lines
+          next_line = f.gets
+          break if next_line.nil?
+          next_line.chomp!
+          count += 1
+          if next_line[0..1] == '88'
+            record.sub!(/\/\s*$/,',')
+            record += next_line[3..-1]
+          else
+            break
+          end
+        end
+        record.sub!(/\/\s*$/,'')
+        self.send RECORD_CODES[record[0..1]], record
+        break if next_line.nil?
+        record = next_line
+      end
+      return @data
+    end
+    
+    private
+    
     def default_record_parse(type, record)
       h = Hash.new
       values = record.split(',')
@@ -125,30 +152,6 @@ module BaiParser
       return [a, c]
     end
     
-    def parse(filename)
-      f = File.open(filename)
-      record = next_line = f.gets.chomp
-      count = 1
-      loop do
-        loop do # gather continuation lines
-          next_line = f.gets
-          break if next_line.nil?
-          next_line.chomp!
-          count += 1
-          if next_line[0..1] == '88'
-            record.sub!(/\/\s*$/,',')
-            record += next_line[3..-1]
-          else
-            break
-          end
-        end
-        record.sub!(/\/\s*$/,'')
-        self.send RECORD_CODES[record[0..1]], record
-        break if next_line.nil?
-        record = next_line
-      end
-      return @data
-    end
   end
   
 end
