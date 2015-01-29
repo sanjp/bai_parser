@@ -53,6 +53,7 @@ module BaiParser
         break if next_line.nil?
         record = next_line
       end
+      f.close
       return @data
     end
     
