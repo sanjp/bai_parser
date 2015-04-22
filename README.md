@@ -21,6 +21,8 @@ Or install it yourself as:
 ``` ruby
 require "bai_parser"
 data = BaiParser::Parser.parse "BAI-File-From-Bank.bai"
+# or
+data = BaiParser::Parser.parse file_contents_from_bai_file
 
 # Then you can use a custom writer to output the data as needed such as to a csv file
 MyCustomBAIWriter.write data
@@ -36,3 +38,4 @@ bai_parse bai-file.txt
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
+
