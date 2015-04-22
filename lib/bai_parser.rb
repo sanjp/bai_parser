@@ -32,7 +32,7 @@ module BaiParser
     end
     
     def parse(filename_or_file_contents)
-      if filename_or_file_contents.match(/bai/i)
+      if File.exists? filename_or_file_contents
         f = File.open(filename_or_file_contents)
       else
         f = StringIO.new(filename_or_file_contents)
