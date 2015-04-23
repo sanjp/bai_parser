@@ -26,13 +26,17 @@ module BaiParser
       @data = {}
     end
     
-    def self.parse(filename)
+    def self.parse(filename_or_file_contents)
       p = self.new
-      p.parse filename
+      p.parse filename_or_file_contents
     end
     
-    def parse(filename)
-      f = File.open(filename)
+    def parse(filename_or_file_contents)
+      if File.exists? filename_or_file_contents
+        f = File.open(filename_or_file_contents)
+      else
+        f = StringIO.new(filename_or_file_contents)
+      end
       record = next_line = f.gets.chomp
       count = 1
       loop do
