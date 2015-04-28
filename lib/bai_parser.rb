@@ -33,10 +33,12 @@ module BaiParser
     end
     
     def parse(filename_or_file_contents)
-      if File.exists? filename_or_file_contents
+      if File.file? filename_or_file_contents
         f = File.open(filename_or_file_contents)
-      else
+      elsif filename_or_file_contents =~ /^01,/
         f = StringIO.new(filename_or_file_contents)
+      else
+        raise ArgumentError, "Did not provide valid BAI data (does not start with 01 File Header record) or valid file name"
       end
       record = next_line = f.gets.chomp
       count = 1
