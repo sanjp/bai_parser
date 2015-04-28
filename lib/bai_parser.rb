@@ -1,4 +1,5 @@
 require "bai_parser/version"
+require 'stringio'
 
 module BaiParser
   
