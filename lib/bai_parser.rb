@@ -49,7 +49,7 @@ module BaiParser
           next_line.chomp!
           count += 1
           if next_line[0..1] == '88'
-            record.sub!(/\/\s*$/,',')
+            record.sub!(/\/\s*$/, '')
             record += next_line[3..-1]
           else
             break
